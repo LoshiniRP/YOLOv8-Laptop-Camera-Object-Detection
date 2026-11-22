@@ -33,22 +33,48 @@ YOLOv8 Detection
 Display Detected Objects
 ```
 
-## Student Task
-
-* Capture your own image using the laptop camera.
-* Detect the objects present in the image.
-* Display the final output.
-* Perform the experiment with **3 different scenes**.
-
-## Submission
-
-* Jupyter Notebook (`.ipynb`)
-* Original captured images
-* YOLOv8 output images
-* Screenshot of the final result
 
 ## GitHub Reference
-
 https://github.com/ultralytics/ultralytics
-
 **Platform:** Anaconda + Jupyter Notebook only.
+
+## Program:
+Name: R P Loshini
+Register Number: 212225230155
+
+```
+# Object Detection Using Web Camera
+# YOLOv8 + OpenCV
+# Install once in Jupyter/Command Prompt:
+# pip install ultralytics opencv-python
+import cv2
+from ultralytics import YOLO
+# Load a pretrained YOLOv8 model
+model = YOLO("yolov8n.pt")
+# Open the default webcam
+cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+ print("Error: Cannot open webcam.")
+ raise SystemExit
+while True:
+ ret, frame = cap.read()
+ if not ret:
+ print("Error: Cannot read webcam frame.")
+ break
+ # Run object detection
+ results = model(frame, verbose=False)
+ # Draw bounding boxes, class names and confidence
+ annotated_frame = results[0].plot()
+ cv2.imshow("Object Detection - Web Camera", annotated_frame)
+ # Press q to quit
+ if cv2.waitKey(1) & 0xFF == ord("q"):
+ break
+cap.release()
+cv2.destroyAllWindows()
+```
+
+## Output:
+<img width="416" height="672" alt="image" src="https://github.com/user-attachments/assets/bdd4f3f6-f4ea-4cc7-b3af-c655c935016b" />
+
+## Result:
+Thus, YOLOv8 Object Detection Using Laptop Camera has been executed successfully.

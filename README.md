@@ -45,12 +45,15 @@ Register Number: 212225230155
 ```
 # Object Detection Using Web Camera
 # YOLOv8 + OpenCV
+
 # Install once in Jupyter/Command Prompt:
 # pip install ultralytics opencv-python
 import cv2
 from ultralytics import YOLO
+
 # Load a pretrained YOLOv8 model
 model = YOLO("yolov8n.pt")
+
 # Open the default webcam
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
@@ -61,14 +64,18 @@ while True:
  if not ret:
  print("Error: Cannot read webcam frame.")
  break
+
  # Run object detection
  results = model(frame, verbose=False)
+
  # Draw bounding boxes, class names and confidence
  annotated_frame = results[0].plot()
  cv2.imshow("Object Detection - Web Camera", annotated_frame)
+
  # Press q to quit
  if cv2.waitKey(1) & 0xFF == ord("q"):
  break
+
 cap.release()
 cv2.destroyAllWindows()
 ```
